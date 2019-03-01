@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script type="text/javascript" src="/statics/js/vue.min.js"></script>
+    <script type="text/javascript" src="code.jquery.com/jquery-1.11.0.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var scale_width=$(document).width()/230.0;
+            var scale_height=$(document).height()/34;
+            $(document.body).css("zoom",Math.min(scale_width,scale_height));
+        });
+        $(window).resize(function () {
+            var scale_width=$(document).width()/230.0;
+            var scale_height=$(document).height()/34;
+            $(document.body).css("zoom",Math.min(scale_width,scale_height));
+        });
+    </script>
+</head>
+<body>
+<div>Home</div>
+{% block mainbody %}
+    <p>首页</p>
+{% endblock %}
+</body>
+</html>
