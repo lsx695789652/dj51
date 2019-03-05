@@ -1,10 +1,9 @@
 # _*_ coding : utf-8 _*_
-import cookielib
 import urllib
 from django.http import  HttpResponse
 from multiprocessing import process
 import os,time,random
-from multiprocessing import  pool
+from multiprocessing import pool
 
 
 def pachon(request):
