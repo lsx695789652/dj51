@@ -9,22 +9,7 @@
     <link rel="stylesheet" href="{% static "layui/css/layui.css" %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static "css/global.css"%}" media="all">
 	<link rel="stylesheet" type="text/css" href="{% static "css/adminstyle.css"%}" media="all">
-
     <script type="text/javascript" src="{% static "layui/layui.js" %}"></script>
-
-    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            var scale_width=$(document).width()/230.0;
-            var scale_height=$(document).height()/34;
-            $(document.body).css("zoom",Math.min(scale_width,scale_height));
-        });
-        $(window).resize(function () {
-            var scale_width=$(document).width()/230.0;
-            var scale_height=$(document).height()/34;
-            $(document.body).css("zoom",Math.min(scale_width,scale_height));
-        });
-    </script>-->
     <script>
         layui.config({
             version: '1551352891258' //为了更新 js 缓存，可忽略
@@ -33,17 +18,10 @@
 </head>
 <body>
 <div class="layui-layout layui-layout-admin" id="layui_layout">
-    {% include 'head.html' %}
-
-    {% include 'left.html' %}
 
     {% block mainbody %}
 
     {% endblock %}
-
-    {% include 'footer.html' %}
 </div>
-<script type="text/javascript" src="{% static "js/index.js" %}"></script>
-<script type="text/javascript" src="{% static "js/larry.js" %}"></script>
 </body>
 </html>

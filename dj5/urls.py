@@ -16,11 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import MVC.users as use
+import MVC.layout as lay
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('MVC/', use.index),
+    path('index/', lay.main),
+    path('left/', lay.left),
+    path('user/', use.index),
     path('save', use.save),
+    path('select/', use.selectdata),
+    path('detail/', use.detail)
 
 ]
