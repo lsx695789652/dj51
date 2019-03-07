@@ -23,7 +23,7 @@
 	border-bottom-color: #000;
 }
 .header-demo .layui-nav .layui-this{background-color: #000;/* #5FB878 */}
-.header-demo .layui-nav .layui-nav-item a:hover, 
+.header-demo .layui-nav .layui-nav-item a:hover,
 .header-demo .layui-nav .layui-this a{color: #ffffff;}
 .header-demo .layui-nav .layui-nav-item span.layui-nav-more{
 	top: 26px;
@@ -31,7 +31,7 @@
 .header-demo .layui-nav .layui-nav-item span.layui-nav-mored{
 	top: 20px;
 }
-.header-demo .layui-nav .layui-this:after, 
+.header-demo .layui-nav .layui-this:after,
 .header-demo .layui-nav-bar{background-color: #393D49;}
 .header-demo .layui-nav .layui-this a{padding: 0 15px;}
 .header{
@@ -41,7 +41,7 @@
 	width: 185px; height: 57px; position: relative;
 }
 .larry-side-menu{
-	position: absolute; 
+	position: absolute;
 	cursor: pointer;
     z-index: 19940201;
     left: 200px;
@@ -174,7 +174,7 @@
 	border-left: solid 2px #1AA094;
 }
 .layui-tab-content{
-	min-height: 150px; 
+	min-height: 150px;
 	/* padding: 5px 0 0 0; */
 }
  /* tab选项卡 */
@@ -204,7 +204,7 @@
 	font-size: 14px;
 }
 .larry-test{
-	
+
 	height: 40px;
 	color: #000;
 	position: absolute;
@@ -259,17 +259,7 @@
 .center {
     text-align: center;
 }
-.lock-screen{
-   position: fixed;
-   top: 0px;
-   left: 0px;
-   width: 100%;
-   height: 100%;
-	background:#F1F2F7 url(../images/lockscreenbg.jpg) repeat fixed;
-	background-size:cover;
-	background-repeat:repeat;
-	z-index: 999999;
-}
+
 .lock-wrapper{
 	margin:10% auto;
 	max-width:370px;
@@ -346,7 +336,7 @@
 .form-control {
     height: 30px;
 }
-@media (min-width: 1200px)
+
 .col-lg-12 {
     width: 100%;
     float: left;

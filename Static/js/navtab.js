@@ -58,14 +58,15 @@ layui.define(['element'], function(exports){
          */
         LarryTab.prototype.exists = function(title){
             var _this = ELEM.titleBox === undefined ? this.init() : this,
-			    tabIndex = -1;
+			    tabIndex = -1,layid=0;
 			ELEM.titleBox.find('li').each(function(i, e) {
 			    var $em = $(this).children('em');
 			    if($em.text() === title) {
 				      tabIndex = i;
+				      layid=$(this).attr("lay-id")
 			    };
 		    });
-		    return tabIndex;
+		    return [tabIndex, layid];
         };
         /**
          * [tabAdd 增加选项卡，如果已存在则增加this样式]
@@ -74,7 +75,8 @@ layui.define(['element'], function(exports){
          */
         LarryTab.prototype.tabAdd = function(data){
             var _this = this;
-		    var tabIndex = _this.exists(data.title);
+            var rdata=_this.exists(data.title);
+		    var tabIndex = rdata[0];
 		    // 若不存在
 		    if(tabIndex === -1){
 		    	globalTabIdIndex++;
@@ -95,7 +97,8 @@ layui.define(['element'], function(exports){
 			    //添加tab
 			    element.tabAdd(ELEM.tabFilter, {
 				    title: title,
-				    content: content
+				    content: content,
+					id:globalTabIdIndex
 			    });
 			    //iframe 自适应
 			    ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
@@ -104,13 +107,16 @@ layui.define(['element'], function(exports){
 			    if(_this.config.closed) {
 				//监听关闭事件
 				    ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function() {
-				    	element.tabDelete(ELEM.tabFilter, $(this).parent('li').index()).init();
+				    	//element.tabDelete(ELEM.tabFilter, $(this).parent('li').index()).init();
+						element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id'))
 				    });
 			    };
 			    //切换到当前打开的选项卡
-			    element.tabChange(ELEM.tabFilter, ELEM.titleBox.find('li').length - 1);
+			    //element.tabChange(ELEM.tabFilter, ELEM.titleBox.find('li').length - 1);
+				element.tabChange(ELEM.tabFilter, globalTabIdIndex);
 		    }else {
-			    element.tabChange(ELEM.tabFilter, tabIndex);
+			   // element.tabChange(ELEM.tabFilter, tabIndex);
+				element.tabChange(ELEM.tabFilter, rdata[1])
 		    }
         };
     var navtab = new LarryTab();

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends '../layout.html' %}
 {% block mainbody %}
     <table class="layui-hide" id="demo" lay-filter="test"></table>
     <script type="text/html" id="barDemo">
@@ -40,6 +40,7 @@
                             , title: "新增" //不显示标题栏
                             , area: ['500px','550px']
                             , shade: 0.8
+                            ,skin:'layui-layer-rim'
                             , id: 'LAY_layuipro' //设定一个id，防止重复弹出
                             , moveType: 1 //拖拽模式，0或者1
                             , content: '/detail/'

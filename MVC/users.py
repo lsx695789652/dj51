@@ -18,7 +18,7 @@ def index(request):
     data = {}
     province = serializers.serialize("json", list)
     data["ctx"] = json.loads(province)
-    return render(request, "UserManage/index.html", data)
+    return render(request, "admin/UserManage/index.html", data)
 
 
 @csrf_exempt
@@ -30,15 +30,15 @@ def save(request):
     data = {}
     province = serializers.serialize("json", list)
     data["ctx"] = json.loads(province)
-    return render(request, "UserManage/index.html", data)
+    return render(request, "admin/UserManage/index.html", data)
 
 
 def update(request):
-    return render_to_response('UserManage/index.html')
+    return render_to_response('admin/UserManage/index.html')
 
 
 def delete(request):
-    return render_to_response('UserManage/index.html')
+    return render_to_response('admin/UserManage/index.html')
 
 
 def detail(request):
@@ -47,7 +47,7 @@ def detail(request):
     if request.GET:
         id = request.GET['id']
     data['id'] = id
-    return render(request, 'UserManage/detail.html', data)
+    return render(request, 'admin/UserManage/detail.html', data)
 
 
 @csrf_exempt
