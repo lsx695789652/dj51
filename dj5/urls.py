@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 import MVC.users as use
 import MVC.layout as lay
+import MVC.test as test
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', test.test),
     path('index/', lay.main),
     path('left/', lay.left),
     path('user/', use.index),
