@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import MVC.users as use
-import MVC.layout as lay
-import MVC.test as test
+import app.users as use
+import app.layout as lay
+import app.tests as test
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test/', test.test),
+    path('tests/', test.test),
     path('index/', lay.main),
     path('left/', lay.left),
     path('user/', use.index),

@@ -1,7 +1,7 @@
 # _*_ coding : utf-8 _*_
 from django.http import HttpResponse
 from django.http import JsonResponse
-from MVC.Models import User
+from app.models import User
 from django.shortcuts import render, render_to_response
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
