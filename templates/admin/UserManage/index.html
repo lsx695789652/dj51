@@ -18,7 +18,7 @@
             table.render({
                 elem: '#demo'
                 , height: 420
-                , url: '/select/' //数据接口
+                , url: '/admin/select/' //数据接口
                 , title: '用户表'
                 , page: true //开启分页
                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -26,6 +26,7 @@
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
                     , {field: 'name', title: '用户名', width: 80}
+                    , {field: 'password', title: '密码', width: 80}
                 ]]
             });
 
@@ -43,7 +44,7 @@
                             ,skin:'layui-layer-rim'
                             , id: 'LAY_layuipro' //设定一个id，防止重复弹出
                             , moveType: 1 //拖拽模式，0或者1
-                            , content: '/detail/'
+                            , content: '/admin/detail/'
                         });
                         break;
                     case 'update':

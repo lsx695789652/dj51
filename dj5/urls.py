@@ -15,20 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import app.users as use
+import app.admin.users as use
+import app.admin.login as login
 import app.layout as lay
 import app.tests as test
 
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('tests/', test.test),
-    path('index/', lay.main),
-    path('left/', lay.left),
-    path('user/', use.index),
-    path('save', use.save),
-    path('select/', use.selectdata),
-    path('detail/', use.detail)
+    # path('admin/', admin.site.urls),
+
+    path('admin/login/', login.login),
+    path('admin/tests/', test.test),
+    path('admin/index/', lay.main),
+    path('admin/left/', lay.left),
+    path('admin/user/', use.index),
+    path('admin/save/', use.save),
+    path('admin/select/', use.selectdata),
+    path('admin/detail/', use.detail),
+
 
 ]

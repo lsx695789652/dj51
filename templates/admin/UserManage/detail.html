@@ -1,13 +1,13 @@
 {% extends '../layout.html' %}
 {% block mainbody %}
     <div style="width: 450px;margin-top: 5px;">
-        <form class="layui-form" action="/save" lay-filter="example">
+        <form class="layui-form" lay-filter="example" action="/admin/save/" method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ id }}"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input name="username" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off"
+                    <input name="username" class="layui-input" type="text" placeholder="请输入用户名" autocomplete="off"
                            lay-verify="title">
                 </div>
             </div>
@@ -74,7 +74,8 @@
         layui.use(['form'], function () {
             var form = layui.form;
             form.on('submit(save)', function (data) {
-
+                var param = data.field;
+                console.log(JSON.stringify(param));
             });
             form.on('submit(close)', function (data) {
                 var index = parent.layer.getFrameIndex(window.name)

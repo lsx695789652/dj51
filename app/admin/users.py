@@ -23,13 +23,18 @@ def index(request):
 
 @csrf_exempt
 def save(request):
-    if request.POST:
-        user = User(name=request.POST['username'])
-        user.save()
-    list = User.objects.all().order_by("id")
     data = {}
-    province = serializers.serialize("json", list)
-    data["ctx"] = json.loads(province)
+    try:
+        if request.POST:
+            old = User.objects.filter(name=request.POST['username'])
+            if old:
+                return 101
+            user = User(name=request.POST['username'], password=request.POST['password'])
+            user.save()
+            return 200
+        return 404
+    except Exception as e:
+        return 500
     return render(request, "admin/UserManage/index.html", data)
 
 

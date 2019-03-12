@@ -29,6 +29,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=20, verbose_name='用户名')),
+                ('password', models.CharField(max_length=20, verbose_name='密码')),
             ],
         ),
     ]

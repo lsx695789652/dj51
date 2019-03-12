@@ -1,5 +1,5 @@
 layui.config({
-    base: '../static/js/'
+    base: '../../static/js/'
 }).use(['jquery', 'element', 'layer', 'navtab'], function () {
     window.jQuery = window.$ = layui.jquery;
     window.layer = layui.layer;
