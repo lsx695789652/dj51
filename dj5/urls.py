@@ -20,12 +20,11 @@ import app.admin.login as login
 import app.layout as lay
 import app.tests as test
 
-
-
 urlpatterns = [
     # path('admin/', admin.site.urls),
 
     path('admin/login/', login.login),
+    path('admin/loginout/', login.loginout),
     path('admin/tests/', test.test),
     path('admin/index/', lay.main),
     path('admin/left/', lay.left),
@@ -33,6 +32,5 @@ urlpatterns = [
     path('admin/save/', use.save),
     path('admin/select/', use.selectdata),
     path('admin/detail/', use.detail),
-
 
 ]

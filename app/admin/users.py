@@ -24,6 +24,21 @@ def index(request):
 @csrf_exempt
 def save(request):
     data = {}
+    result = saveuser(request)
+    txt = ''
+    if result == 101:
+        txt = '用户已存在'
+    elif result == 200:
+        txt = '创建成功'
+    elif result == 400:
+        txt = '没接收到数据'
+    else:
+        txt = '运行出错'
+    data['txt'] = txt
+    return render(request, "admin/UserManage/index.html", data)
+
+
+def saveuser(request):
     try:
         if request.POST:
             old = User.objects.filter(name=request.POST['username'])
@@ -35,7 +50,6 @@ def save(request):
         return 404
     except Exception as e:
         return 500
-    return render(request, "admin/UserManage/index.html", data)
 
 
 def update(request):
