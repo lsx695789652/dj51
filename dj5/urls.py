@@ -19,6 +19,7 @@ import app.admin.users as use
 import app.admin.login as login
 import app.layout as lay
 import app.tests as test
+import app.views.index as index
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -34,5 +35,7 @@ urlpatterns = [
     path('admin/select/', use.selectdata),
     path('admin/detail/', use.detail),
     path('admin/delete/', use.delete),
+
+    path('index/', index.index),
 
 ]
