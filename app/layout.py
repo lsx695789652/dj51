@@ -21,3 +21,7 @@ def head(request):
 
 def foot(request):
     return render_to_response('admin/footer.html')
+
+
+def welcome(request):
+    return render_to_response('admin/welcome.html')

@@ -27,10 +27,12 @@ urlpatterns = [
     path('admin/loginout/', login.loginout),
     path('admin/tests/', test.test),
     path('admin/index/', lay.main),
+    path('admin/main/', lay.welcome),
     path('admin/left/', lay.left),
     path('admin/user/', use.index),
     path('admin/save/', use.save),
     path('admin/select/', use.selectdata),
     path('admin/detail/', use.detail),
+    path('admin/delete/', use.delete),
 
 ]

@@ -25,39 +25,39 @@ def index(request):
 def save(request):
     data = {}
     result = saveuser(request)
-    txt = ''
-    if result == 101:
-        txt = '用户已存在'
-    elif result == 200:
-        txt = '创建成功'
-    elif result == 400:
-        txt = '没接收到数据'
-    else:
-        txt = '运行出错'
-    data['txt'] = txt
-    return render(request, "admin/UserManage/index.html", data)
+    return HttpResponse(result)
 
 
 def saveuser(request):
     try:
         if request.POST:
+            if request.POST['id'] != '':
+                test = User.objects.get(id=request.POST['id'])
+                test.password = request.POST['password']
+                test.name = request.POST['username']
+                test.save()
+                return '200'
             old = User.objects.filter(name=request.POST['username'])
             if old:
-                return 101
+                return '101'
             user = User(name=request.POST['username'], password=request.POST['password'])
             user.save()
-            return 200
-        return 404
+            return '200'
+        return '404'
     except Exception as e:
-        return 500
-
-
-def update(request):
-    return render_to_response('admin/UserManage/index.html')
+        return '500'
 
 
 def delete(request):
-    return render_to_response('admin/UserManage/index.html')
+    try:
+        if request.GET:
+            id = request.GET['id']
+            user = User.objects.get(id=id)
+            user.delete()
+            return HttpResponse('200')
+        return HttpResponse('404')
+    except Exception:
+        return HttpResponse('500')
 
 
 def detail(request):
@@ -65,6 +65,9 @@ def detail(request):
     id = ''
     if request.GET:
         id = request.GET['id']
+        user = User.objects.get(id=id)
+        data['username'] = user.name
+        data['password'] = user.password
     data['id'] = id
     return render(request, 'admin/UserManage/detail.html', data)
 
