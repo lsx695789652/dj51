@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import app.admin.users as use
+import app.admin.goods as goods
 import app.admin.login as login
 import app.layout as lay
 import app.tests as test
@@ -35,6 +36,7 @@ urlpatterns = [
     path('admin/select/', use.selectdata),
     path('admin/detail/', use.detail),
     path('admin/delete/', use.delete),
+    path('admin/goods_list/', goods.index),
 
     path('index/', index.index),
 

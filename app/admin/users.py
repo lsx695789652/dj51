@@ -6,6 +6,7 @@ from django.shortcuts import render, render_to_response
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 import json
 
 
@@ -74,16 +75,28 @@ def detail(request):
 
 @csrf_exempt
 def selectdata(request):
+    count = 0
     if request.GET:
-        page = request.GET["page"]
-        limit = request.GET["limit"]
-    userlist = User.objects.all().values()
+        page = request.GET.get('page', 0)
+        limit = request.GET.get("limit", 10)
+        user_list = User.objects.all().values()
+        count = user_list.count()
+        paginator = Paginator(user_list, limit)
+        try:
+            userlist = paginator.page(page).object_list
+        except PageNotAnInteger:
+            userlist = paginator.page(10).object_list
+        except EmptyPage:
+            userlist = paginator.page(paginator.num_pages).object_list
+    else:
+        userlist = User.objects.all().values()
+        count = userlist.count()
     data = {}
     # province = serializers.serialize("json", userlist)
     # data["ctx"] = json.loads(province)
     data["code"] = 0
-    data["msg"] = request.GET["page"]
-    data["count"] = userlist.count()
+    data["msg"] = ''
+    data["count"] = count
     data["data"] = list(userlist)
 
     return JsonResponse(data, safe=False)
