@@ -20,6 +20,7 @@ def index(request):
             goodlist = paginator.page(10).object_list
         except EmptyPage:
             goodlist = paginator.page(paginator.num_pages).object_list
+        data['count'] = good_list.count()
         data['data'] = list(goodlist)
         return JsonResponse(data)
     return render_to_response('admin/Goods/index.html')

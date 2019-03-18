@@ -625,3 +625,6 @@ body .layui-layout-admin .layui-larry-foot .p-admin a{
 .icon-sousuo-sousuo1:before { content: "\e6d6"; }
 
 .icon-sousuo_sousuo1:before { content: "\e6b4"; }
+.site-demo-button div {
+    margin: 10px 30px 10px;
+}

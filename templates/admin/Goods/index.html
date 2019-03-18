@@ -7,32 +7,94 @@
             height: 200px;
             overflow: hidden;
             width: 180px;
+            border: 1px solid #C9C9C9;
+        }
+
+        .layui-chek {
+            position: relative;
+            bottom: 18px;
         }
     </style>
-    <ul class="flow-default" id="LAY_demo2" style="height: 300px;"></ul>
+    <fieldset class="layui-elem-field site-demo-button" style="margin-top: 10px;">
+        <legend>操作方式</legend>
+        <div>
+            <button class="layui-btn layui-btn-normal">新增按钮</button>
+            <button class="layui-btn layui-btn-warm">修改按钮</button>
+            <button class="layui-btn layui-btn-danger">删除按钮</button>
+            <button class="layui-btn layui-btn-disabled">禁用按钮</button>
+        </div>
+    </fieldset>
+    <ul class="flow-default" id="LAY_demo2" style="height: 300px;">
+    </ul>
+    <div id="newsPage" style="width: 100%; text-align: center;"></div>
 
     <script>
-        layui.use('flow', function () {
+        layui.use(['laypage', 'layer', 'flow', 'form'], function () {
             var flow = layui.flow;
-            flow.load({
-                elem: '#LAY_demo2' //流加载容器
-                , isAuto: false
-                , isLazyimg: true
-                , done: function (page, next) { //加载下一页
-                    //模拟插入
-                    setTimeout(function () {
-                        var lis = [];
-                        $.get('/admin/goods_list/?page=' + page + '&size=10 ', function (data) {
-                            for (var i = 0; i < data.data.length; i++) {
-                                lis.push('<li class="imgli">' +
-                                    '<img lay-src="' + data.data[i].goods_summary + '" width="180">' +
-                                    '</li>')
-                            }
-                            next(lis.join(''), page < 10);
-                        });
-                    }, 500);
+            var form = layui.form;
+            var laypage = layui.laypage,
+                layer = layui.layer;
+            var $ = layui.$;
+
+            var lis = [];
+            var count = 0;
+            $.get('/admin/goods_list/?page=1&size=10 ', function (data) {
+                count = data.count
+                for (var i = 0; i < data.data.length; i++) {
+                    lis.push('<li class="imgli layui-form">' +
+                        '<div style="position:relative;"><div ><img src="' + data.data[i].goods_summary + '" width="180" height="200"></div>' +
+                        ' <div class="layui-chek"> <input name="select" value="' + data.data[i].id + '" type="checkbox" lay-skin="primary"></div>' +
+                        '</div>' +
+                        '</li>')
                 }
+                $("#LAY_demo2").html(lis.join(''))
+                form.render('checkbox');
+                laypage.render({
+                    elem: 'newsPage',
+                    count: count,
+                    limit: 10,
+                    first: '首页',
+                    last: '尾页',
+                    layout: ['prev', 'page', 'next', 'skip'],
+                    theme: '#00A0E9',
+                    jump: function (obj, first) {
+                        if (!first) {
+                            var lis = [];
+                            $.get('/admin/goods_list/?page=' + obj.curr + '&size=' + obj.limit, function (data) {
+                                for (var i = 0; i < data.data.length; i++) {
+                                    lis.push('<li class="imgli layui-form">' +
+                                        '<div style="position:relative;"><div ><img src="' + data.data[i].goods_summary + '" width="180" height="200"></div>' +
+                                        ' <div class="layui-chek"> <input name="select" value="' + data.data[i].id + '" type="checkbox" lay-skin="primary"></div>' +
+                                        '</div>' +
+                                        '</li>')
+                                }
+                                $("#LAY_demo2").html(lis.join(''))
+                                form.render('checkbox');
+                            });
+                        }
+                    }
+                });
             });
+            /* flow.load({
+                 elem: '#LAY_demo2' //流加载容器
+                 , isAuto: false
+                 , isLazyimg: true
+                 , done: function (page, next) { //加载下一页
+                     //模拟插入
+                     setTimeout(function () {
+                         var lis = [];
+                         $.get('/admin/goods_list/?page=' + page + '&size=10 ', function (data) {
+                             for (var i = 0; i < data.data.length; i++) {
+                                 lis.push('<li class="imgli">' +
+                                     '<img lay-src="' + data.data[i].goods_summary + '" width="180">' +
+                                     '</li>')
+                             }
+                             next(lis.join(''), page < 10);
+                         });
+                     }, 500);
+                 }
+             });*/
+
         });
     </script>
 {% endblock %}
